@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+
+<body onload="horoscope()">
+    <script src="js/home.js"></script>
+    <script src="js/master.js"></script>
+    <script src="js/axios.min.js"></script>
+    <!-- Navigation -->
+    <nav class="w3-bar w3-black">
+        <a onclick="toHome()" class="w3-button w3-bar-item">Home</a>
+        <a onclick="toSaved()" class="w3-button w3-bar-item">Saved Memes</a>
+        <a onclick="toAccountDetails()" class="w3-button w3-bar-item">My Account</a>
+    </nav>
+    
+    
+      
+    <section width="1000px"class="center">
+        <div id="horo" style="font-size: larger;"></div>
+        <img class="centerimage" id="image1" onerror="handleError()">
+        <div id="spinner" style="display:none">
+            <img src="images/spinner.webp">
+        </div>
+    </section>
+    <section>
+    
+        <button onclick="previous()" class="left">Previous</button>
+        <button onclick="next()" class="right">Next</button>
+        <button onclick="save()"class="centerbutton">Save</button>
+        <button onclick="share()"class="centerbutton2">Share</button>
+        <button onclick="random()" class="topbutton">Random</button>
+    </section>
+    <style>
+        .center {
+            display: block;
+            margin-top: 50px;
+            margin-left: auto;
+            margin-right: auto;
+            /* background-color: black; */
+            height: 500px;
+            width:500px
+
+        }
+        .centerimage {
+            max-height: 100%;
+            max-width: 100%;
+            margin-top: auto;
+            margin-bottom: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .left {
+            margin-top: 20px;
+            position: absolute;
+            right: 60%;
+            width: 5%;
+            height: 3.5%;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            transition-duration: .2s;
+        }
+        .right {
+            margin-top: 20px; 
+            position: absolute;
+            right: 40%;
+            width: 5%;
+            height: 3.5%;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            transition-duration: .2s;
+        }
+        .centerbutton {
+            display: block;
+            margin-top: 80px;
+            position: absolute;
+            right: 45%;
+            width: 5%;
+            height: 3.5%;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            transition-duration: .2s;
+        }
+        .centerbutton2 {
+            display: block;
+            margin-top: 80px;
+            position: absolute;
+            right: 55%;
+            width: 5%;
+            height: 3.5%;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            transition-duration: .2s;
+        }
+        .topbutton {
+            display: block;
+            margin-top: 20px;
+            position: absolute;
+            right: 50%;
+            width: 5%;
+            height: 3.5%;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            transition-duration: .2s;
+        }
+        .topbutton:hover {
+            background-color: #a5a8a5;  
+            color: white;
+        }
+        .centerbutton:hover {
+            background-color: #a5a8a5; 
+            color: white;
+        }
+        .left:hover {
+            background-color: #a5a8a5; 
+            color: white;
+        }
+        .right:hover {
+            background-color: #a5a8a5;  
+            color: white;
+        }
+        </style>
+
+</body>
+</html>

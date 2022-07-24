@@ -1,0 +1,82 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled false
+        html.enabled true
+    }
+}
+
+// for use with the Gradle Java Plugin
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/']
+        }
+        resources {
+            srcDirs = ['src/resources/']
+        }
+    }
+    test {
+        java {
+            srcDirs = ['tst/']
+        }
+        resources {
+            srcDirs = ['tst/resources/']
+        }
+    }
+}
+
+dependencies {
+    implementation 'org.junit.jupiter:junit-jupiter:5.8.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+
+    implementation 'com.google.guava:guava:31.1-jre'
+
+    implementation 'org.apache.logging.log4j:log4j:2.17.2'
+
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '4.5.1'
+
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.9.0'
+    implementation group: 'com.google.dagger', name: 'dagger', version: '2.41'
+
+    implementation 'com.google.dagger:dagger:2.41'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.41'
+
+    // https://mvnrepository.com/artifact/org.testng/testng
+    implementation group: 'org.testng', name: 'testng', version: '7.5'
+
+
+    // Added for AWS Lambda Functions
+    implementation platform('com.amazonaws:aws-java-sdk-bom:1.11.1000')
+    implementation 'com.amazonaws:aws-java-sdk-s3'
+    implementation 'com.amazonaws:aws-lambda-java-core:1.2.1'
+    implementation 'com.amazonaws:aws-lambda-java-events:3.11.0'
+    runtimeOnly 'com.amazonaws:aws-lambda-java-log4j2:1.5.1'
+
+    ///dynamodb aws dependency
+    // https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-dynamodb
+    implementation 'com.amazonaws:aws-java-sdk-dynamodb:1.12.205'
+
+    //dagger
+    implementation group: 'com.google.dagger', name: 'dagger', version: '2.15'
+
+    implementation "com.google.dagger:dagger:2.15"
+
+}
+
+task buildZip(type: Zip) {
+    from compileJava
+    from processResources
+    into('./lib') {
+        from configurations.runtimeClasspath
+    }
+}
